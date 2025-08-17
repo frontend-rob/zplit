@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "fix:styles": "stylelint '**/*.{scss,css}' --fix"
   },
   "private": true,
   "dependencies": {

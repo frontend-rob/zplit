@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-config-clean-order"
+    ],
+    "rules": {
+        "declaration-empty-line-before": "never",
+        "scss/dollar-variable-pattern": "^[_a-z]+[a-zA-Z0-9-]*$"
+    },
+    "ignoreFiles": [
+        "node_modules",
+        "dist/**/*"
+    ]
+}
