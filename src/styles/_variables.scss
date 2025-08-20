@@ -1,61 +1,28 @@
 :root {
     // background colors
-    --bg-base-100: #;
-    --bg-base-200: #;
-    --bg-base-300: #;
+    --bg-base-100: #fff;
+    --bg-base-200: #f4f4f5;
+    --bg-base-300: #e4e4e7;
 
     // theme colors
-    --col-primary: #;
+    --col-primary: #beff66;
     --col-secondary: #;
     --col-accent: #;
-    --col-neutral: #;
-    --col-muted: #;
+    --col-neutral: #3f3f46;
+    --col-muted: #52525b;
 
     // status colors
-    --col-info: #;
-    --col-success: #;
-    --col-warning: #;
-    --col-error: #;
+    --col-success: #6ee7b7;
+    --col-warning: #fcd34d;
+    --col-error: #fda4af;
 
     // text colors
-    --text-primary: #;
-    --text-secondary: #;
-    --text-muted: #;
-    --text-inverse: #;
+    --text-primary: #18181b;
+    --text-secondary: #3f3f46;
+    --text-muted: #52525b;
+    --text-inverse: #fff;
 
     // border colors
-    --border-base: #;
-    --border-muted: #;
+    --border-base: #e4e4e7;
 
-    // font sizes
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 1.875rem;
-    --text-4xl: 2.25rem;
-    --text-5xl: 3rem;
-    --text-6xl: 3.75rem;
-    --text-7xl: 4.5rem;
-    --text-8xl: 6rem;
-    --text-9xl: 8rem;
-
-    // spacing
-    --space-xxs: 0.125rem;
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 0.75rem;
-    --space-base: 1rem;
-    --space-lg: 1.25rem;
-    --space-xl: 1.5rem;
-    --space-2xl: 2rem;
-    --space-3xl: 2.5rem;
-    --space-4xl: 3rem;
-    --space-5xl: 3.5rem;
-    --space-6xl: 4rem;
-    --space-7xl: 5rem;
-    --space-8xl: 6rem;
-    --space-9xl: 7rem;
 }
