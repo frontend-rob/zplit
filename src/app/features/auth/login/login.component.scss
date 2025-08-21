@@ -1,0 +1,14 @@
+.landingpage-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    max-width: 56rem;
+    width: 100%;
+    padding: 2rem;
+    border: 1.5px solid var(--border-base);
+    border-radius: 2rem;
+    text-align: center;
+    background-color: var(--col-backdrop);
+}

@@ -5,84 +5,40 @@
     justify-content: space-between;
     width: 100%;
     height: 100dvh;
-    background:
-        linear-gradient(90deg, var(--bg-base-100) calc(1.25rem - 0.125rem), transparent 1%) center / 1.25rem 1.25rem,
-        linear-gradient(var(--bg-base-100) calc(1.25rem - 0.125rem), transparent 1%) center / 1.25rem 1.25rem,
-        var(--bg-base-300);
-}
-
-header {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 4rem;
-    padding: 0 1.25rem;
-    background-color: var(--bg-base-100);
-
-
-    .logo {
-        width: 2rem;
-        height: 2rem;
-    }
-
-    .logo-text {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: var(--text-primary);
-    }
-}
-
-.landingpage-card {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    max-width: 48rem;
-    text-align: center;
-
-    .title {
-        font-size: 3rem;
-        font-weight: 700;
-        line-height: 3.5rem;
-        color: var(--text-primary);
-        text-wrap: balance;
-        letter-spacing: -0.75px;
-    }
-
-    span {
-        font-size: 1.125rem;
-        line-height: 1.5;
-        line-height: 1.5rem;
-        text-wrap: balance;
-    }
-}
-
-.cta-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
 }
 
 footer {
     display: flex;
-    gap: 1.25rem;
+    justify-content: center;
+    width: 100%;
+    height: 4rem;
+    padding: 0 1.25rem;
+    font-size: 0.875rem;
+    background: linear-gradient(0deg, var(--bg-base-100), transparent);
+}
+
+.footer-inner {
+    display: flex;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
     width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 200ms ease-in-out;
+}
+.footer-link:hover {
+    color: var(--text-primary);
+}
+
+
+app-start-screen,
+app-signup,
+app-login {
     padding: 1.25rem;
-    font-size: 0.875rem;
-
-    .footer-link {
-        color: var(--text-muted);
-        text-decoration: none;
-        transition: color 200ms ease-in-out;
-
-        &:hover {
-            color: var(--text-primary);
-        }
-    }
 }

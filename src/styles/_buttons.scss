@@ -1,0 +1,113 @@
+@mixin button-base {
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: fit-content;
+    height: 2.75rem;
+    padding: 0.75rem 1.25rem;
+    border: unset;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: background-color 125ms ease, color 125ms ease, border-color 125ms ease;
+}
+
+@mixin button-hover($bg-color, $text-color) {
+    color: $text-color;
+    background-color: $bg-color;
+
+    svg {
+        color: $text-color;
+    }
+}
+
+.btn {
+    @include button-base;
+    color: var(--text-primary);
+    background-color: var(--col-neutral);
+
+    svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: var(--text-inverse);
+        transition: none;
+    }
+}
+
+.btn:active {
+    transform: scale(0.975);
+}
+
+.btn:hover {
+    @include button-hover(color-mix(in srgb, var(--col-neutral) 50%, #52525b 50%), var(--text-primary));
+    transition: 125ms ease;
+}
+
+.btn-primary {
+    color: var(--text-primary);
+    background-color: var(--col-primary);
+
+    svg {
+        color: var(--text-primary);
+        transition: none;
+    }
+}
+
+.btn-primary:hover {
+    @include button-hover(color-mix(in srgb, var(--col-primary) 50%, #a3e635 50%), var(--text-primary));
+    transition: 125ms ease;
+}
+
+.btn-neutral {
+    color: var(--text-primary);
+    background-color: var(--bg-base-200);
+
+    svg {
+        color: var(--text-primary);
+        transition: none;
+    }
+}
+
+.btn-neutral:hover {
+    @include button-hover(var(--bg-neutral-100), var(--text-primary));
+    transition: 125ms ease;
+}
+
+.btn-ghost {
+    color: var(--text-primary);
+    background-color: var(--col-backdrop);
+
+    svg {
+        color: var(--text-primary);
+        transition: none;
+    }
+}
+
+.btn-ghost:hover {
+    @include button-hover(var(--bg-neutral), var(--text-primary));
+    transition: 125ms ease;
+}
+
+
+
+.btn-circle {
+    @include button-base;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.btn-outline {
+    border: 1.5px solid var(--col-neutral);
+    background-color: var(--bg-base-100);
+}
+
+.btn-outline:hover {
+    @include button-hover(color-mix(in srgb, var(--col-neutral) 90%, #52525b 10%), var(--text-inverse));
+    border: 1.5px solid color-mix(in srgb, var(--col-neutral) 90%, #52525b 10%);
+    transition: 125ms ease;
+}

@@ -1,21 +1,18 @@
 <div class="landingpage-wrapper">
-    <header>
-        <img src="assets/img/zplit-logo.svg" class="logo" alt="Zplit Logo">
-        <span class="logo-text">Zplit</span>
-    </header>
-    <div class="landingpage-card">
-        <h1 class="title">Zplit turns confusing group expenses into simple splits.</h1>
-        <span>
-            Whether you’re splitting bills with friends, managing shared expenses with family or organizing group
-            trips, Zplit makes it easy to track who owes what and settle up quickly.
-        </span>
-        <div class="cta-buttons">
-            <button class="btn btn-primary">Get Started</button>
-            <button class="btn btn-secondary">Jump In</button>
-        </div>
-    </div>
+    <app-header />
+    @if (currentScreen === 'start') {
+    <app-start-screen (getStarted)="showSignup()" (jumpIn)="showLogin()" />
+    }
+    @if (currentScreen === 'signup') {
+    <app-signup />
+    }
+    @if (currentScreen === 'login') {
+    <app-login />
+    }
     <footer>
-        <a routerLink="legal-notice" class="footer-link">Legal Notice</a>
-        <a routerLink="privacy-policy" class="footer-link">Privacy Policy</a>
+        <div class="footer-inner">
+            <a routerLink="legal-notice" class="footer-link">Legal Notice</a>
+            <a routerLink="privacy-policy" class="footer-link">Privacy Policy</a>
+        </div>
     </footer>
 </div>

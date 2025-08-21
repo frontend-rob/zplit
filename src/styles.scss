@@ -34,9 +34,29 @@ body {
 app-root {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     min-height: 100dvh;
     font-family: Geist, sans-serif;
     color: var(--text-secondary);
-    background-color: var(--bg-base-100);
+    background:
+        linear-gradient(90deg, var(--bg-base-100) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
+        linear-gradient(var(--bg-base-100) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
+        var(--bg-base-300);
+}
+
+app-header {
+    width: 100%;
+}
+
+app-landing-page,
+app-legal-notice,
+app-privacy-policy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100dvh;
 }
