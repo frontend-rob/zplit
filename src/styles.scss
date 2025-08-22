@@ -1,6 +1,7 @@
 @use "./styles/variables";
 @use "./styles/typography";
 @use "./styles/buttons";
+@use "./styles/inputs";
 @use "./styles/scrollbar";
 
 * {
@@ -28,7 +29,7 @@ html {
 
 body {
     text-rendering: optimizelegibility;
-    background-color: var(--bg-base-100);
+    background-color: var(--bg-base-200);
 }
 
 app-root {
@@ -41,8 +42,8 @@ app-root {
     font-family: Geist, sans-serif;
     color: var(--text-secondary);
     background:
-        linear-gradient(90deg, var(--bg-base-100) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
-        linear-gradient(var(--bg-base-100) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
+        linear-gradient(90deg, var(--bg-base-200) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
+        linear-gradient(var(--bg-base-200) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
         var(--bg-base-300);
 }
 

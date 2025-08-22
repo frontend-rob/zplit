@@ -8,5 +8,4 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class StartScreenComponent {
     @Output() getStarted = new EventEmitter<void>();
-    @Output() jumpIn = new EventEmitter<void>();
 }

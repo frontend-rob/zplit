@@ -1,3 +1,34 @@
 <div class="landingpage-card">
-    <h1 class="title">Create Account</h1>
+    <div class="card-header">
+        <div class="card-header-actions">
+            <button class="btn btn-neutral btn-circle" (click)="navigateToStart.emit()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-x-icon lucide-x">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="card-title">
+            <h2>Ready to Zplit?</h2>
+            <div class="card-subtitle">
+                <span>Sign up and start your Zplit journey.</span>
+                <span>No mess, no stress - just clean splits.</span>
+            </div>
+        </div>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Passwort</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+
+    <button class="btn btn-primary" (click)="navigateToLogin.emit()">Back To LogIn</button>
 </div>

@@ -1,13 +1,13 @@
 <div class="landingpage-wrapper">
     <app-header />
     @if (currentScreen === 'start') {
-    <app-start-screen (getStarted)="showSignup()" (jumpIn)="showLogin()" />
-    }
-    @if (currentScreen === 'signup') {
-    <app-signup />
+    <app-start-screen (getStarted)="showLogin()" />
     }
     @if (currentScreen === 'login') {
-    <app-login />
+    <app-login (navigateToStart)="showStart()" (navigateToSignup)="showSignup()" />
+    }
+    @if (currentScreen === 'signup') {
+    <app-signup (navigateToStart)="showStart()" (navigateToLogin)="showLogin()" />
     }
     <footer>
         <div class="footer-inner">

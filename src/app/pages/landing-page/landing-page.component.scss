@@ -14,7 +14,7 @@ footer {
     height: 4rem;
     padding: 0 1.25rem;
     font-size: 0.875rem;
-    background: linear-gradient(0deg, var(--bg-base-100), transparent);
+    background: linear-gradient(0deg, var(--bg-base-200), transparent);
 }
 
 .footer-inner {
@@ -27,11 +27,13 @@ footer {
     margin: 0 auto;
     padding: 0 1.25rem;
 }
+
 .footer-link {
     color: var(--text-muted);
     text-decoration: none;
     transition: color 200ms ease-in-out;
 }
+
 .footer-link:hover {
     color: var(--text-primary);
 }
@@ -40,5 +42,11 @@ footer {
 app-start-screen,
 app-signup,
 app-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     padding: 1.25rem;
 }

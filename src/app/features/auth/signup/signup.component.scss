@@ -1,14 +1,53 @@
 .landingpage-card {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.25rem;
     align-items: center;
     justify-content: center;
-    max-width: 56rem;
     width: 100%;
-    padding: 2rem;
+    max-width: 28rem;
+    padding: 1.5rem;
     border: 1.5px solid var(--border-base);
     border-radius: 2rem;
     text-align: center;
     background-color: var(--col-backdrop);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.card-header-actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.card-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        text-wrap: balance;
+    }
+}
+
+.card-subtitle {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    align-items: center;
+
+    span {
+        text-align: center;
+        text-wrap: balance;
+    }
 }

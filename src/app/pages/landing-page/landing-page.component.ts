@@ -22,13 +22,16 @@ import { HeaderComponent } from '../../shared/header/header.component';
 export class LandingPageComponent {
     currentScreen: 'start' | 'signup' | 'login' = 'start';
 
-    showSignup() {
-        this.currentScreen = 'signup';
+    showStart() {
+        console.log('showStart() wurde ausgeführt');
+        this.currentScreen = 'start';
     }
+
     showLogin() {
         this.currentScreen = 'login';
     }
-    showStart() {
-        this.currentScreen = 'start';
+    
+    showSignup() {
+        this.currentScreen = 'signup';
     }
 }
