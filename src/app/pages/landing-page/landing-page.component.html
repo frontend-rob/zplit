@@ -1,0 +1,18 @@
+<div class="landingpage-wrapper">
+    <app-header />
+    @if (currentScreen === 'start') {
+    <app-start-screen (getStarted)="showLogin()" />
+    }
+    @if (currentScreen === 'login') {
+    <app-login (navigateToStart)="showStart()" (navigateToSignup)="showSignup()" />
+    }
+    @if (currentScreen === 'signup') {
+    <app-signup (navigateToStart)="showStart()" (navigateToLogin)="showLogin()" />
+    }
+    <footer>
+        <div class="footer-inner">
+            <a routerLink="legal-notice" class="footer-link">Legal Notice</a>
+            <a routerLink="privacy-policy" class="footer-link">Privacy Policy</a>
+        </div>
+    </footer>
+</div>

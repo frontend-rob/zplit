@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./styles/variables";
+@use "./styles/typography";
+@use "./styles/buttons";
+@use "./styles/inputs";
+@use "./styles/scrollbar";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+::selection {
+    background-color: var(--col-primary);
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    overscroll-behavior: none;
+    background-color: var(--bg-base-200);
+}
+
+@media (hover: none) and (pointer: coarse) {
+    html {
+        overscroll-behavior: auto;
+    }
+}
+
+body {
+    text-rendering: optimizelegibility;
+    background-color: var(--bg-base-200);
+}
+
+app-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    font-family: Geist, sans-serif;
+    color: var(--text-secondary);
+    background:
+        linear-gradient(90deg, var(--bg-base-200) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
+        linear-gradient(var(--bg-base-200) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
+        var(--bg-base-300);
+}
+
+app-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+app-landing-page,
+app-legal-notice,
+app-privacy-policy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100dvh;
+}
