@@ -10,6 +10,8 @@ form {
     flex-direction: column;
     gap: 0.75rem;
     width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
 }
 
 .form-group {
@@ -24,6 +26,28 @@ form {
         font-size: 0.875rem;
         font-weight: 400;
         color: var(--text-muted);
+    }
+}
+
+.from-group-checkbox {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+
+    label {
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 400;
+        color: var(--text-muted);
+
+        a {
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
     }
 }
 
@@ -86,4 +110,35 @@ input[type="email"]:focus-visible,
 input[type="password"]:focus-visible {
     border: 1.5px solid var(--text-secondary);
     outline: none;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1.5px solid var(--border-base);
+    border-radius: 4px;
+    appearance: none;
+
+    &:hover {
+        border-color: var(--text-secondary);
+    }
+}
+
+input[type="checkbox"]:checked {
+    border-color: var(--text-secondary);
+    background-color: var(--text-secondary);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    transform: rotate(45deg);
+    width: 4px;
+    height: 9px;
+    border: solid var(--bg-base-100);
+    border-width: 0 2px 2px 0;
 }

@@ -4,7 +4,10 @@ import { Component, Output, EventEmitter } from '@angular/core';
     selector: 'app-login',
     imports: [],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrls: [
+        './login.component.scss',
+        '../../../../styles/_auth.scss'
+    ]
 })
 export class LoginComponent {
     @Output() navigateToStart = new EventEmitter<void>();
