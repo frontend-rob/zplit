@@ -1,4 +1,5 @@
 <div class="landingpage-wrapper">
+    <canvas #dotCanvas class="dot-canvas"></canvas>
     <app-header />
     @if (currentScreen === 'start') {
     <app-start-screen (getStarted)="showLogin()" />

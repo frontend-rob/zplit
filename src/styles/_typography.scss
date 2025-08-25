@@ -13,3 +13,17 @@
     font-display: swap;
     src: url('../../public/assets/fonts/GeistMono[wght].ttf');
 }
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 500;
+    color: var(--text-primary);
+    text-wrap: pretty;
+}
+
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
