@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth.guard';
+import { authGuard } from './core/guards/auth.guard';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { WorkspaceComponent } from './pages/workspace/workspace.component';
 import { LegalNoticeComponent } from './pages/legal-notice/legal-notice.component';

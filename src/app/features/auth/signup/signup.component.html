@@ -14,15 +14,14 @@
             <h2>Ready to Zplit?</h2>
             <div class="card-subtitle">
                 <span>Sign up and start your Zplit journey.</span>
-                <span>No mess, no stress - just clean splits.</span>
             </div>
         </div>
     </div>
-    <form>
+    <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
         <div class="form-group">
-            <label for="name">Name</label>
             <div class="input-field">
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" [placeholder]="'Full Name'" autocomplete="name"
+                    formControlName="username" required>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-user-round-icon lucide-user-round">
@@ -30,11 +29,15 @@
                     <path d="M20 21a8 8 0 0 0-16 0" />
                 </svg>
             </div>
+            <span [class.visible]="signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched"
+                class="validation-error">
+                *Please enter your full name.
+            </span>
         </div>
         <div class="form-group">
-            <label for="email">E-Mail</label>
             <div class="input-field">
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" [placeholder]="'email@example.com'" autocomplete="email"
+                    formControlName="email" required>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-mail-icon lucide-mail">
@@ -42,11 +45,15 @@
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                 </svg>
             </div>
+            <span [class.visible]="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched"
+                class="validation-error">
+                *Please enter a valid e-mail address.
+            </span>
         </div>
         <div class="form-group">
-            <label for="password">Passwort</label>
             <div class="input-field">
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" [placeholder]="'Password'"
+                    formControlName="password" required>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-lock-icon lucide-lock">
@@ -54,21 +61,28 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
             </div>
+            <span [class.visible]="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched"
+                class="validation-error">
+                *Password must contain at least 8 characters.
+            </span>
         </div>
         <div class="from-group-checkbox">
-            <input type="checkbox" id="policy-checkbox" name="policy-checkbox" required>
-            <label for="checkbox">
+            <input
+                [ngClass]="{'checkbox-error': signUpForm.get('policy')?.invalid && signUpForm.get('policy')?.touched}"
+                type="checkbox" id="policy-checkbox" name="policy-checkbox" formControlName="policy" required>
+            <label for="policy-checkbox">
                 Yep, I’m cool with the
-                <a routerLink="privacy-policy" target="_blank" rel="noopener noreferrer">
+                <a routerLink="privacy-policy" target="_blank" rel="noopener noreferrer"
+                    [ngClass]="{'checkbox-error': signUpForm.get('policy')?.invalid && signUpForm.get('policy')?.touched}">
                     privacy policy
-                </a> 
+                </a>
                 and terms.
             </label>
         </div>
+        <div class="form-control">
+            <button type="submit" class="btn btn-primary btn-wide">Create Account</button>
+        </div>
     </form>
-    <div class="form-control">
-        <button type="submit" class="btn btn-primary btn-wide">Create Account</button>
-    </div>
 </div>
 <div class="form-footer">
     <span>Already a Zplitter?</span>

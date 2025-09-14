@@ -1,7 +1,7 @@
 .landingpage-card {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -83,4 +83,22 @@
     &:hover {
         text-decoration: underline 2px solid var(--col-primary);
     }
+}
+
+.validation-error {
+    margin-left: 0.25rem;
+    font-size: 0.625rem;
+    font-weight: 300;
+    color: var(--col-error);
+    opacity: 0;
+    transition: opacity 200ms ease;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+.checkbox-error {
+    border-color: var(--col-error);
+    color: var(--col-error);
 }

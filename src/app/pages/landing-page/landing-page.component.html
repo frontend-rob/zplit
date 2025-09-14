@@ -1,4 +1,5 @@
-<div class="landingpage-wrapper dot-pattern">
+<div class="dot-pattern"></div>
+<div class="landingpage-wrapper">
     <app-header />
 
     @if (currentScreen === 'start') {
@@ -8,7 +9,7 @@
     @if (currentScreen === 'login') {
     <app-login (navigateToStart)="showStart()" (navigateToSignup)="showSignup()" />
     }
-    
+
     @if (currentScreen === 'signup') {
     <app-signup (navigateToStart)="showStart()" (navigateToLogin)="showLogin()" />
     }
