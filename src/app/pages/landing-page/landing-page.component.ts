@@ -49,4 +49,11 @@ export class LandingPageComponent {
         this.currentScreen = 'signup';
     }
 
+    /**
+     * Switches to the login screen after successful registration.
+     */
+    onRegistrationSuccess() {
+        this.currentScreen = 'login';
+    }
+
 }

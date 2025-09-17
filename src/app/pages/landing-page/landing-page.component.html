@@ -11,7 +11,8 @@
     }
 
     @if (currentScreen === 'signup') {
-    <app-signup (navigateToStart)="showStart()" (navigateToLogin)="showLogin()" />
+    <app-signup (navigateToStart)="showStart()" (navigateToLogin)="showLogin()"
+        (registrationSuccess)="onRegistrationSuccess()" />
     }
 
     <footer>
