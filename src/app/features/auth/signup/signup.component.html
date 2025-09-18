@@ -45,9 +45,10 @@
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                 </svg>
             </div>
-            <span [class.visible]="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched"
+            <span 
+                [class.visible]="(signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) || errorMessage"
                 class="validation-error">
-                *Please enter a valid e-mail address.
+                {{ errorMessage ? errorMessage : '*Please enter a valid e-mail address.' }}
             </span>
         </div>
         <div class="form-group">
