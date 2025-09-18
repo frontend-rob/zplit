@@ -1,6 +1,7 @@
 import { Injectable, EnvironmentInjector, inject, runInInjectionContext } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, UserCredential } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, UserCredential, signInWithEmailAndPassword, user as firebaseUser } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 /**
  * Represents user data stored in Firestore.
@@ -19,7 +20,21 @@ export interface UserData {
 })
 export class AuthService {
 
-    constructor(private environmentInjector: EnvironmentInjector) { }
+    /**
+     * Observable for the current user.
+     */
+    user$: Observable<import('@angular/fire/auth').User | null>;
+
+    /**
+     * Creates an instance of AuthService.
+     * @param environmentInjector The Angular EnvironmentInjector
+     */
+    constructor(private environmentInjector: EnvironmentInjector) {
+        this.user$ = runInInjectionContext(this.environmentInjector, () => {
+            const auth = inject(Auth);
+            return firebaseUser(auth);
+        });
+    }
 
     /**
      * Registers a new user with email and password using Firebase Authentication.
@@ -47,4 +62,23 @@ export class AuthService {
             await setDoc(userRef, userData);
         });
     }
+
+    /**
+     * Logs in a user with Firebase Authentication.
+     * Ensures the method runs within an Angular injection context.
+     * @param email - The email address of the user.
+     * @param password - The password for the user.
+     * @returns A promise that resolves when the user is successfully logged in.
+     */
+    async logIn(email: string, password: string): Promise<void> {
+        return runInInjectionContext(this.environmentInjector, async () => {
+            const auth = inject(Auth);
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+        });
+    }
+
 }

@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="logInForm">
+    <form (ngSubmit)="logIn()" [formGroup]="logInForm">
         <div class="form-group">
             <div class="input-field">
                 <input type="email" id="email" name="email" [placeholder]="'email@example.com'" autocomplete="email"
@@ -45,9 +45,10 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
             </div>
-            <span [class.visible]="logInForm.get('password')?.invalid && logInForm.get('password')?.touched"
+            <span 
+                [class.visible]="(logInForm.get('password')?.invalid && logInForm.get('password')?.touched) || errorMessage"
                 class="validation-error">
-                *Password must contain at least 8 characters.
+                {{ errorMessage ? errorMessage : '*Password must contain at least 8 characters.' }}
             </span>
         </div>
         <div class="form-control">
