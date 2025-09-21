@@ -1,6 +1,14 @@
 import { Injectable, EnvironmentInjector, inject, runInInjectionContext } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, UserCredential, signInWithEmailAndPassword, user as firebaseUser } from '@angular/fire/auth';
-import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { 
+    Auth,
+    createUserWithEmailAndPassword,
+    UserCredential,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+    user as firebaseUser 
+} from '@angular/fire/auth';
+import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 /**
@@ -78,6 +86,27 @@ export class AuthService {
                 email,
                 password
             );
+        });
+    }
+
+    async signInWithGoogle(): Promise<void> {
+        return runInInjectionContext(this.environmentInjector, async () => {
+            const auth = inject(Auth);
+            const firestore = inject(Firestore);
+            const provider = new GoogleAuthProvider();
+            const result = await signInWithPopup(auth, provider);
+
+            const user = result.user;
+            const userRef = doc(firestore, `users/${user.uid}`);
+            const userSnap = await getDoc(userRef);
+
+            if (!userSnap.exists()) {
+                await this.saveUserToFirestore(user.uid, {
+                    uid: user.uid,
+                    userName: user.displayName ?? '',
+                    email: user.email ?? ''
+                });
+            }
         });
     }
 

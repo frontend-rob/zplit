@@ -45,8 +45,7 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
             </div>
-            <span 
-                [class.visible]="(logInForm.get('password')?.invalid && logInForm.get('password')?.touched) || errorMessage"
+            <span [class.visible]="(logInForm.get('password')?.invalid && logInForm.get('password')?.touched) || errorMessage"
                 class="validation-error">
                 {{ errorMessage ? errorMessage : '*Password must contain at least 8 characters.' }}
             </span>
@@ -58,7 +57,9 @@
                 <span>OR</span>
                 <div class="divider-line"></div>
             </div>
-            <button class="btn btn-neutral btn-wide">Continue with Google</button>
+            <button (click)="signInWithGoogle()" class="btn btn-neutral btn-wide">
+                Continue with Google
+            </button>
         </div>
     </form>
 </div>

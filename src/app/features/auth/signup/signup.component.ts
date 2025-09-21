@@ -57,7 +57,7 @@ export class SignupComponent {
         private formBuilder: FormBuilder,
     ) {
         this.signUpForm = this.formBuilder.group({
-            username: ['', [Validators.required, FormValidationService.nameValidator]],
+            userName: ['', [Validators.required, FormValidationService.nameValidator]],
             email: ['', [Validators.required, FormValidationService.emailValidator]],
             password: ['', [Validators.required, FormValidationService.passwordValidator]],
             policy: [false, [Validators.requiredTrue]]
@@ -69,8 +69,8 @@ export class SignupComponent {
      * @returns An object containing userName, email, and password.
      */
     private getFormData(): SignupFormData {
-        const { username, email, password } = this.signUpForm.value;
-        return { userName: username as string, email: email as string, password: password as string };
+        const { userName, email, password } = this.signUpForm.value;
+        return { userName: userName as string, email: email as string, password: password as string };
     }
 
     /**

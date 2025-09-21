@@ -86,4 +86,18 @@ export class LoginComponent {
         }
     }
 
+    /**
+     * Signs in the user with Google account using the AuthService.
+     * Navigates to the workspace on successful login, handles errors otherwise.
+     */
+    async signInWithGoogle(): Promise<void> {
+        this.errorMessage = null;
+        try {
+            await this.authService.signInWithGoogle();
+            this.router.navigate(['/workspace']);
+        } catch (error: any) {
+            this.handleLoginError(error);
+        }
+    }
+
 }
