@@ -8,6 +8,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: Geist, sans-serif;
 }
 
 ::selection {
@@ -37,17 +38,15 @@ app-root {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
     min-height: 100dvh;
     font-family: Geist, sans-serif;
     color: var(--text-secondary);
-    background:
-        linear-gradient(90deg, var(--bg-base-200) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
-        linear-gradient(var(--bg-base-200) calc(1.5rem - 0.125rem), transparent 1%) center / 1.5rem 1.5rem,
-        var(--bg-base-300);
+    background-color: var(--bg-base-200);
 }
 
 app-header {
-    position: sticky;
+    position: sticky !important;
     top: 0;
     left: 0;
     width: 100%;
@@ -60,6 +59,14 @@ app-privacy-policy {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+}
+
+app-workspace {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
     min-height: 100dvh;
 }

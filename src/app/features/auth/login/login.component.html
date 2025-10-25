@@ -14,15 +14,14 @@
             <h2>Zplitter’s back!</h2>
             <div class="card-subtitle">
                 <span>Log in and pick up where you left off.</span>
-                <span>Time to settle the scores, the easy way.</span>
             </div>
         </div>
     </div>
-    <form>
+    <form (ngSubmit)="logIn()" [formGroup]="logInForm">
         <div class="form-group">
-            <label for="email">E-Mail</label>
             <div class="input-field">
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" [placeholder]="'email@example.com'" autocomplete="email"
+                    formControlName="email" required>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-mail-icon lucide-mail">
@@ -30,11 +29,15 @@
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                 </svg>
             </div>
+            <span [class.visible]="logInForm.get('email')?.invalid && logInForm.get('email')?.touched"
+                class="validation-error">
+                *Please enter a valid e-mail address.
+            </span>
         </div>
         <div class="form-group">
-            <label for="password">Passwort</label>
             <div class="input-field">
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" [placeholder]="'Password'"
+                    formControlName="password" required>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-lock-icon lucide-lock">
@@ -42,17 +45,23 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
             </div>
+            <span [class.visible]="(logInForm.get('password')?.invalid && logInForm.get('password')?.touched) || errorMessage"
+                class="validation-error">
+                {{ errorMessage ? errorMessage : '*Password must contain at least 8 characters.' }}
+            </span>
+        </div>
+        <div class="form-control">
+            <button class="btn btn-primary btn-wide" type="submit">Jump In</button>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span>OR</span>
+                <div class="divider-line"></div>
+            </div>
+            <button (click)="signInWithGoogle()" class="btn btn-neutral btn-wide">
+                Continue with Google
+            </button>
         </div>
     </form>
-    <div class="form-control">
-        <button class="btn btn-primary btn-wide" type="submit">Jump In</button>
-        <div class="divider">
-            <div class="divider-line"></div>
-            <span>OR</span>
-            <div class="divider-line"></div>
-        </div>
-        <button class="btn btn-neutral btn-wide">Continue with Google</button>
-    </div>
 </div>
 <div class="form-footer">
     <span>New to Zplit?</span>

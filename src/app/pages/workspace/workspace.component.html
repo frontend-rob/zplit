@@ -1,1 +1,11 @@
-<p>workspace works!</p>
+<div class="workspace-wrapper">
+    <app-sidebar [open]="sidebarOpen"></app-sidebar>
+
+    @if (sidebarOpen && isMobile) {
+        <div class="drawer" (click)="toggleSidebar()"></div>
+    }
+
+    <div class="workspace-content">
+        <app-toolbar (toggle)="toggleSidebar()"></app-toolbar>
+    </div>
+</div>

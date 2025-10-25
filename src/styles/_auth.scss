@@ -1,12 +1,12 @@
 .landingpage-card {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 28rem;
-    padding: 1.5rem;
+    max-width: 25rem;
+    padding: 1.25rem;
     border: 1.5px solid var(--border-base);
     border-radius: 2rem;
     text-align: center;
@@ -16,7 +16,6 @@
 .card-header {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     justify-content: flex-end;
     width: 100%;
 }
@@ -30,11 +29,11 @@
 .card-title {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.25rem;
     align-items: center;
 
     h2 {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 700;
         color: var(--text-primary);
         text-wrap: balance;
@@ -44,10 +43,10 @@
 .card-subtitle {
     display: flex;
     flex-direction: column;
-    gap: .25rem;
     align-items: center;
 
     span {
+        font-size: 1rem;
         text-align: center;
         text-wrap: balance;
     }
@@ -84,4 +83,23 @@
     &:hover {
         text-decoration: underline 2px solid var(--col-primary);
     }
+}
+
+.validation-error {
+    width: max-content;
+    margin-left: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--col-error);
+    opacity: 0;
+    transition: opacity 200ms ease;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+.checkbox-error {
+    border-color: var(--col-error);
+    color: var(--col-error);
 }
