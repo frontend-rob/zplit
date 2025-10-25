@@ -37,9 +37,9 @@
     }
 }
 
-.btn:has(svg) {
-    padding-right: 1rem;
-}
+// .btn:has(svg) {
+//     padding-right: 1rem;
+// }
 
 .btn:active {
     transform: scale(0.975);
@@ -82,7 +82,7 @@
 
 .btn-ghost {
     color: var(--text-primary);
-    background-color: var(--col-backdrop);
+    background-color: var(--bg-base-200);
 
     svg {
         color: var(--text-primary);
@@ -98,14 +98,33 @@
 .btn-circle {
     @include button-base;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
     padding: 0.25rem;
     border-radius: 50%;
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 }
 
 .btn-circle:has(svg) {
     padding: 0.25rem;
+}
+
+.btn-square {
+    @include button-base;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 }
 
 .btn-outline {

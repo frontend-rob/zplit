@@ -49,11 +49,11 @@
 
         &:hover {
             color: var(--text-primary);
-        }
 
-        &:hover svg {
-            color: var(--text-primary);
-            transition: none;
+            svg {
+                color: var(--text-primary);
+                transition: none;
+            }
         }
     }
 }
