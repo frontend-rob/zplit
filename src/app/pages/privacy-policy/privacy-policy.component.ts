@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../shared/header/header.component';
 import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { LucideAngularModule, ArrowUpRight } from 'lucide-angular';
 
 @Component({
     selector: 'app-privacy-policy',
     imports: [
         RouterLink,
-        HeaderComponent
+        HeaderComponent,
+        LucideAngularModule
     ],
     templateUrl: './privacy-policy.component.html',
     styleUrls: [
@@ -15,5 +17,5 @@ import { RouterLink } from '@angular/router';
     ]
 })
 export class PrivacyPolicyComponent {
-
+    readonly ArrowUpRight = ArrowUpRight;
 }

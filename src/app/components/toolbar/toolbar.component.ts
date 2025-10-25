@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
-
+import { LucideAngularModule, Bell, Menu } from 'lucide-angular';
 
 @Component({
     selector: 'app-toolbar',
-    imports: [CommonModule],
+    imports: [
+        CommonModule,
+        LucideAngularModule
+    ],
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss']
 })
@@ -12,7 +15,8 @@ export class ToolbarComponent {
     
     @Output() toggle = new EventEmitter<void>();
 
-    constructor() { }
+    readonly Bell = Bell;
+    readonly Menu = Menu;
 
     toggleSidebar() {
         this.toggle.emit();

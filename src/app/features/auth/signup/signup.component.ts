@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { FormValidationService } from '../../../core/services/form-validation.service';
+import { LucideAngularModule, X, UserRound, Mail, Lock } from 'lucide-angular';
 
 /**
  * Interface for signup form data.
@@ -24,6 +25,7 @@ interface SignupFormData {
         CommonModule,
         RouterLink,
         ReactiveFormsModule,
+        LucideAngularModule
     ],
     templateUrl: './signup.component.html',
     styleUrls: [
@@ -36,6 +38,11 @@ export class SignupComponent {
     @Output() navigateToStart = new EventEmitter<void>();
     @Output() navigateToLogin = new EventEmitter<void>();
     @Output() registrationSuccess = new EventEmitter<void>();
+
+    readonly X = X;
+    readonly UserRound = UserRound;
+    readonly Mail = Mail;
+    readonly Lock = Lock;
 
     /**
      * Reactive signup form group.

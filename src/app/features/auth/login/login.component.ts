@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../core/services/auth.service';
 import { FormValidationService } from '../../../core/services/form-validation.service';
 import { Router } from '@angular/router';
+import { LucideAngularModule, X, Mail, Lock } from 'lucide-angular';
 
 /**
  * LoginComponent handles the login form, validation, and emits navigation events.
@@ -13,7 +14,8 @@ import { Router } from '@angular/router';
     selector: 'app-login',
     imports: [
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        LucideAngularModule
     ],
     templateUrl: './login.component.html',
     styleUrls: [
@@ -25,6 +27,10 @@ export class LoginComponent {
 
     @Output() navigateToStart = new EventEmitter<void>();
     @Output() navigateToSignup = new EventEmitter<void>();
+
+    readonly X = X;
+    readonly Mail = Mail;
+    readonly Lock = Lock;
 
     /**
      * Reactive login form group.
