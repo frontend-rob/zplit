@@ -1,9 +1,11 @@
 <div class="workspace-wrapper">
-    <app-sidebar [open]="sidebarOpen"></app-sidebar>
+    <app-sidebar [open]="(sidebarOpen$ | async) ?? false"></app-sidebar>
 
-    @if (sidebarOpen && isMobile) {
-        <div class="drawer" (click)="toggleSidebar()"></div>
-    }
+    <ng-container>
+        @if (((sidebarOpen$ | async) ?? false) && ((isMobile$ | async) ?? false)) {
+            <div class="drawer" (click)="toggleSidebar()"></div>
+        }
+    </ng-container>
 
     <div class="workspace-content">
         <app-toolbar (toggle)="toggleSidebar()"></app-toolbar>
