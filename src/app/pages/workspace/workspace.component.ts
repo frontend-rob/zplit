@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
 import { SidebarService } from '../../core/services/sidebar.service';
 import { Observable } from 'rxjs';
 
@@ -10,7 +11,8 @@ import { Observable } from 'rxjs';
 	imports: [
 		CommonModule,
 		ToolbarComponent,
-		SidebarComponent
+		SidebarComponent,
+        EmptyStateComponent
 	],
 	templateUrl: './workspace.component.html',
 	styleUrls: ['./workspace.component.scss']

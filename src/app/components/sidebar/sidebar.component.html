@@ -9,7 +9,12 @@
     </header>
     <div class="sidebar-content">
         <nav>
-            <p>sidebar works!</p>
+            @for (item of menuItems; track $index) {
+                <div class="sidebar-item" (click)="onItemClick(item)">
+                    <i-lucide [img]="item.icon" class="lucide-icon"></i-lucide>
+                    {{ item.label }}
+                </div>
+            }
         </nav>
         <section class="user-menu">
             <div class="profile-img"></div>

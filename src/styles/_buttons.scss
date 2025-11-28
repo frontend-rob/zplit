@@ -61,7 +61,7 @@
 }
 
 .btn-primary:hover {
-    @include button-hover(color-mix(in srgb, var(--col-primary) 50%, #e5e100 50%), var(--text-primary));
+    @include button-hover(color-mix(in srgb, var(--col-primary) 50%, #ffe66d 50%), var(--text-primary));
     transition: 125ms ease;
 }
 
@@ -82,7 +82,7 @@
 
 .btn-ghost {
     color: var(--text-primary);
-    background-color: var(--bg-base-200);
+    background-color: transparent;
 
     svg>.lucide-icon {
         color: var(--text-primary);
@@ -91,7 +91,7 @@
 }
 
 .btn-ghost:hover {
-    @include button-hover(color-mix(in srgb, var(--bg-base-300) 50%, #d4d4d8 50%), var(--text-primary));
+    @include button-hover(color-mix(in srgb, var(--bg-base-200) 50%, #d4d4d8 50%), var(--text-primary));
     transition: 125ms ease;
 }
 
