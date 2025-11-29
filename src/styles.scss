@@ -69,4 +69,17 @@ app-workspace {
     justify-content: flex-start;
     width: 100%;
     min-height: 100dvh;
+    background-color: var(--bg-base-000);
+}
+
+app-empty-state {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    padding: 1rem;
+}
+
+.lucide-icon {
+    display: inline-flex;
+    align-items: center;
 }

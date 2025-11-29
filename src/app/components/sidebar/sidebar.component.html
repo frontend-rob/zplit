@@ -7,6 +7,22 @@
             </a>
         </div>
     </header>
-    <p>sidebar works!</p>
+    <div class="sidebar-content">
+        <nav>
+            @for (item of menuItems; track $index) {
+            <div (click)="onItemClick(item)" [routerLink]="item.route" [class.active]="item.active" 
+                class="sidebar-item">
+                <i-lucide [img]="item.icon" class="lucide-icon"></i-lucide>
+                {{ item.label }}
+            </div>
+            }
+        </nav>
+        <section class="user-menu">
+            <div class="profile-img"></div>
+            <div class="user-info">
+                <p class="user-name">{{ username }}</p>
+                <p class="user-email">{{ email }}</p>
+            </div>
+        </section>
+    </div>
 </div>
-

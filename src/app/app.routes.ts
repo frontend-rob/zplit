@@ -4,6 +4,11 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { WorkspaceComponent } from './pages/workspace/workspace.component';
 import { LegalNoticeComponent } from './pages/legal-notice/legal-notice.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { GuideComponent } from './components/guide/guide.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { ZplitsComponent } from './components/zplits/zplits.component';
 
 export const routes: Routes = [
     {
@@ -15,7 +20,15 @@ export const routes: Routes = [
         path: 'workspace',
         component: WorkspaceComponent,
         title: 'Zplit - Workspace',
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        children: [
+            { path: '', component: EmptyStateComponent },
+            { path: 'zplits', component: ZplitsComponent },
+            { path: 'contacts', component: ContactsComponent },
+            { path: 'help', component: GuideComponent },
+            { path: 'settings', component: SettingsComponent },
+
+        ]
     },
     {
         path: 'legal-notice',

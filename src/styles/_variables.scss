@@ -1,15 +1,16 @@
 :root {
     // background colors
-    --bg-base-100: #fff;
-    --bg-base-200: #f4f4f5;
-    --bg-base-300: #e4e4e7;
+    --bg-base-000: #fff;
+    --bg-base-100: #f9fafb;
+    --bg-base-200: #f3f4f6;
+    --bg-base-300: #e5e7eb;
 
     // theme colors
     --col-primary: #f6f100;
     --col-secondary: #;
     --col-accent: #;
-    --col-neutral: #3f3f46;
-    --col-muted: #52525b;
+    --col-neutral: #e5e7eb;
+    --col-muted: #475569;
     --col-backdrop: #fffc;
 
     // status colors
@@ -18,14 +19,14 @@
     --col-error: #e11d48;
 
     // text colors
-    --text-primary: #18181b;
-    --text-secondary: #3f3f46;
-    --text-muted: #71717a;
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
     --text-inverse: #fff;
-    --text-placeholder: #a1a1aa;
+    --text-placeholder: #9ca3af;
 
     // border colors
-    --border-base: #e4e4e7;
-    --scrollbar-thumb: #71717a;
+    --border-base: #e5e7eb;
+    --scrollbar-thumb: #9ca3af;
 
 }

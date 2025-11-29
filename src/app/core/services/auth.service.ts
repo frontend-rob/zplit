@@ -6,6 +6,7 @@ import {
     signInWithEmailAndPassword,
     GoogleAuthProvider,
     signInWithPopup,
+    signOut,
     user as firebaseUser 
 } from '@angular/fire/auth';
 import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
@@ -89,6 +90,11 @@ export class AuthService {
         });
     }
 
+    /**
+     * Signs in the user using Google OAuth via a popup and ensures a Firestore
+     * user document exists for the authenticated user.
+     * @returns Promise<void> - resolves when the operation is complete.
+     */
     async signInWithGoogle(): Promise<void> {
         return runInInjectionContext(this.environmentInjector, async () => {
             const auth = inject(Auth);
@@ -107,6 +113,32 @@ export class AuthService {
                     email: user.email ?? ''
                 });
             }
+        });
+    }
+
+    /**
+     * Logs out the currently authenticated user.
+     * @returns Promise<void> - resolves when sign-out is complete.
+     */
+    async logOut(): Promise<void> {
+        return runInInjectionContext(this.environmentInjector, async () => {
+            const auth = inject(Auth);
+            await signOut(auth);
+        });
+    }
+
+    /**
+     * Reads user data from Firestore.
+     * @param uid - The user's UID.
+     * @returns Promise<UserData | null> - resolves with stored user data or null if not found.
+     */
+    async getUserDataFromFirestore(uid: string): Promise<UserData | null> {
+        return runInInjectionContext(this.environmentInjector, async () => {
+            const firestore = inject(Firestore);
+            const userRef = doc(firestore, `users/${uid}`);
+            const userSnap = await getDoc(userRef);
+            if (!userSnap.exists()) return null;
+            return userSnap.data() as UserData;
         });
     }
 
