@@ -100,9 +100,14 @@ nav {
     }
 }
 
+.sidebar-item.active {
+    color: var(--text-primary);
+    background-color: var(--col-neutral);
+}
+
 .user-menu {
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
     align-items: center;
     width: 100%;
     padding: 0.5rem;
@@ -115,10 +120,21 @@ nav {
 }
 
 .profile-img {
-    width: 3rem;
-    height: 3rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border-radius: 0.75rem;
-    background-color: var(--col-primary);
+    background-color: var(--col-neutral);
+}
+
+.user-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+.user-email {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-secondary);
 }
 
 @media (width >=1024px) {

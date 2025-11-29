@@ -1,14 +1,16 @@
 import { Component, Input, HostBinding, OnInit, OnDestroy } from '@angular/core';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService, UserData } from '../../core/services/auth.service';
+import { SidebarService } from '../../core/services/sidebar.service';
 import { LucideAngularModule, Gem, Zap, ContactRound, MessageCircleQuestionMark, Settings2, LogOut, } from 'lucide-angular';
 
 @Component({
     selector: 'app-sidebar',
     imports: [
+        RouterLink,
         CommonModule,
         LucideAngularModule
     ],
@@ -41,7 +43,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
      * @param authService - authentication service wrapper
      * @param router - Angular Router for navigation
      */
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router, private sidebarService: SidebarService) { }
 
     /**
      * Dynamic items for the sidebar.
@@ -50,13 +52,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
      * - route?: routerLink target
      * - action?: special action identifier (e.g. 'logout')
      */
-    menuItems: Array<{ label: string; icon: any; route?: string; action?: string }> = [
-        { label: 'Dashboard', icon: this.Gem, route: '/workspace' },
-        { label: 'Zplits', icon: this.Zap, route: '/favorites' },
-        { label: 'Contacts', icon: this.ContactRound, route: '/contacts' },
-        { label: 'Help', icon: this.MessageCircleQuestionMark, route: '/help' },
-        { label: 'Settings', icon: this.Settings2, route: '/settings' },
-        { label: 'Log Out', icon: this.LogOut, action: 'logout' }
+    menuItems: Array<{ label: string; icon: any; route?: string; action?: string; active?: boolean }> = [
+        { label: 'Dashboard', icon: this.Gem, route: '/workspace', active: false },
+        { label: 'Zplits', icon: this.Zap, route: '/workspace/zplits', active: false },
+        { label: 'Contacts', icon: this.ContactRound, route: '/workspace/contacts', active: false },
+        { label: 'Help', icon: this.MessageCircleQuestionMark, route: '/workspace/help', active: false },
+        { label: 'Settings', icon: this.Settings2, route: '/workspace/settings', active: false },
+        { label: 'Log Out', icon: this.LogOut, action: 'logout', active: false }
     ];
 
     /**
@@ -70,6 +72,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(fbUser => {
                 void this.handleUserChange(fbUser);
+            });
+
+        // initial und nach Navigationsereignissen aktiv setzen
+        this.setActiveByUrl(this.router.url);
+        this.router.events
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(event => {
+                if (event instanceof NavigationEnd) {
+                    this.setActiveByUrl(event.urlAfterRedirects);
+                }
             });
     }
 
@@ -121,14 +133,42 @@ export class SidebarComponent implements OnInit, OnDestroy {
      * @param item - clicked sidebar item
      * @returns void
      */
-    onItemClick(item: { label: string; icon: any; route?: string; action?: string }): void {
+    onItemClick(item: { label: string; icon: any; route?: string; action?: string; active?: boolean }): void {
+        this.menuItems.forEach(m => m.active = false);
+        item.active = true;
+
         if (item.action === 'logout') {
             void this.logOut();
             return;
         }
-        
+
         if (item.route) {
             void this.router.navigate([item.route]);
+            this.closeSidebarIfMobile();
+        }
+    }
+
+    private setActiveByUrl(url: string): void {
+        this.menuItems.forEach(item => {
+            if (!item.route) {
+                item.active = false;
+                return;
+            }
+
+            // Dashboard (root) nur aktiv, wenn genau /workspace (oder mit trailing slash) besucht wird
+            if (item.route === '/workspace') {
+                item.active = (url === '/workspace' || url === '/workspace/');
+                return;
+            }
+
+            // andere Routen bleiben per Prefix aktiv (z.B. /workspace/zplits/sub)
+            item.active = url.startsWith(item.route);
+        });
+    }
+
+    private closeSidebarIfMobile(): void {
+        if (this.sidebarService.isMobile$.value && this.sidebarService.sidebarOpen$.value) {
+            this.sidebarService.toggleSidebar();
         }
     }
 
