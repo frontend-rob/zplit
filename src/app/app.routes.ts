@@ -2,13 +2,14 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { WorkspaceComponent } from './pages/workspace/workspace.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { ZplitsComponent } from './features/zplits/zplits.component';
+import { ContactsComponent } from './features/contacts/contacts.component';
+import { GuideComponent } from './features/guide/guide.component';
+import { SettingsComponent } from './features/settings/settings.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { LegalNoticeComponent } from './pages/legal-notice/legal-notice.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
-import { GuideComponent } from './components/guide/guide.component';
-import { EmptyStateComponent } from './components/empty-state/empty-state.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { ContactsComponent } from './components/contacts/contacts.component';
-import { ZplitsComponent } from './components/zplits/zplits.component';
 
 export const routes: Routes = [
     {
@@ -22,7 +23,7 @@ export const routes: Routes = [
         title: 'Zplit - Workspace',
         canActivate: [authGuard],
         children: [
-            { path: '', component: EmptyStateComponent },
+            { path: 'dashboard', component: DashboardComponent },
             { path: 'zplits', component: ZplitsComponent },
             { path: 'contacts', component: ContactsComponent },
             { path: 'help', component: GuideComponent },

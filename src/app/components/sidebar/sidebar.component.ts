@@ -53,7 +53,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
      * - action?: special action identifier (e.g. 'logout')
      */
     menuItems: Array<{ label: string; icon: any; route?: string; action?: string; active?: boolean }> = [
-        { label: 'Dashboard', icon: this.Gem, route: '/workspace', active: false },
+        { label: 'Dashboard', icon: this.Gem, route: '/workspace/dashboard', active: false },
         { label: 'Zplits', icon: this.Zap, route: '/workspace/zplits', active: false },
         { label: 'Contacts', icon: this.ContactRound, route: '/workspace/contacts', active: false },
         { label: 'Help', icon: this.MessageCircleQuestionMark, route: '/workspace/help', active: false },
