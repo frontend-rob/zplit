@@ -74,7 +74,7 @@ export class LoginComponent {
                 this.logInForm.value.email,
                 this.logInForm.value.password
             );
-            this.router.navigate(['/workspace']);
+            this.router.navigate(['/workspace/dashboard']);
         } catch (error: any) {
             this.handleLoginError(error);
         }
