@@ -1,5 +1,6 @@
 .workspace-wrapper {
     display: flex;
+    gap: 2rem;
     width: 100%;
     max-width: 90rem;
     min-height: 100dvh;
@@ -8,6 +9,7 @@
 .workspace-content {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     width: 100%;
     max-width: 90rem;
     background-color: var(--bg-base-000);
@@ -15,7 +17,7 @@
     main {
         display: flex;
         flex-grow: 1;
-        margin: 1rem;
+        padding: 2rem;
         border: 1px solid var(--border-base);
         border-radius: 1rem;
         background-color: var(--bg-base-100);

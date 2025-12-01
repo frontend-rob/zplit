@@ -17,6 +17,7 @@ import { LucideAngularModule, Gem, Zap, ContactRound, MessageCircleQuestionMark,
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.scss'
 })
+
 export class SidebarComponent implements OnInit, OnDestroy {
 
     @Input() open = false;
@@ -42,15 +43,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
      *
      * @param authService - authentication service wrapper
      * @param router - Angular Router for navigation
+     * @param sidebarService - service controlling sidebar open/close state (mobile)
      */
     constructor(private authService: AuthService, private router: Router, private sidebarService: SidebarService) { }
 
     /**
-     * Dynamic items for the sidebar.
-     * - label: display text
-     * - icon: reference to the icon field above
-     * - route?: routerLink target
-     * - action?: special action identifier (e.g. 'logout')
+     * Menu items displayed in the sidebar.
+     * Each item may have a label, icon, route or special action.
      */
     menuItems: Array<{ label: string; icon: any; route?: string; action?: string; active?: boolean }> = [
         { label: 'Dashboard', icon: this.Gem, route: '/workspace/dashboard', active: false },
@@ -62,10 +61,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     ];
 
     /**
-     * Subscribe to the Firebase auth user observable and react to changes.
-     * The subscription is automatically torn down on component destroy via takeUntil.
-     *
-     * @returns void
+     * Angular lifecycle hook: initialize component, subscribe to user and router events.
      */
     ngOnInit(): void {
         this.authService.user$
@@ -74,7 +70,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
                 void this.handleUserChange(fbUser);
             });
 
-        // initial und nach Navigationsereignissen aktiv setzen
         this.setActiveByUrl(this.router.url);
         this.router.events
             .pipe(takeUntil(this.destroy$))
@@ -86,9 +81,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Lifecycle hook: clean up subscriptions and other resources.
-     *
-     * @returns void
+     * Angular lifecycle hook: clean up subscriptions.
      */
     ngOnDestroy(): void {
         this.destroy$.next();
@@ -96,10 +89,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Handle user changes: load Firestore data if available, otherwise fallback to Firebase user.
+     * Handles updates when the Firebase Auth user changes.
+     * Tries to load Firestore profile data and falls back to auth user fields.
      *
-     * @param fbUser - Firebase Auth user or null when logged out.
-     * @returns Promise<void> - resolves when user data (or fallback) has been applied.
+     * @param fbUser - Firebase Auth user or null when logged out
+     * @returns Promise<void> resolves when local username/email are updated
      */
     private async handleUserChange(fbUser: import('@angular/fire/auth').User | null): Promise<void> {
         if (!fbUser) {
@@ -118,9 +112,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Reset username/email to empty state.
-     *
-     * @returns void
+     * Clears the displayed username and email (used on logout).
      */
     private clearUser(): void {
         this.username = '';
@@ -128,10 +120,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Click handler for a sidebar item: navigates or executes actions.
+     * Click handler for sidebar items: navigates or performs actions like logout.
      *
-     * @param item - clicked sidebar item
-     * @returns void
+     * @param item - the clicked menu item
      */
     onItemClick(item: { label: string; icon: any; route?: string; action?: string; active?: boolean }): void {
         this.menuItems.forEach(m => m.active = false);
@@ -148,6 +139,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * Sets the active menu item based on the current router URL.
+     *
+     * @param url - current router URL
+     */
     private setActiveByUrl(url: string): void {
         this.menuItems.forEach(item => {
             if (!item.route) {
@@ -155,17 +151,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
                 return;
             }
 
-            // Dashboard (root) nur aktiv, wenn genau /workspace (oder mit trailing slash) besucht wird
             if (item.route === '/workspace') {
                 item.active = (url === '/workspace' || url === '/workspace/');
                 return;
             }
 
-            // andere Routen bleiben per Prefix aktiv (z.B. /workspace/zplits/sub)
             item.active = url.startsWith(item.route);
         });
     }
 
+    /**
+     * Closes the sidebar on mobile when a navigation has occurred.
+     */
     private closeSidebarIfMobile(): void {
         if (this.sidebarService.isMobile$.value && this.sidebarService.sidebarOpen$.value) {
             this.sidebarService.toggleSidebar();
@@ -174,16 +171,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     /**
      * trackBy function for ngFor to optimize re-rendering by using the item label as key.
-    *
-    * @param item - item to produce a tracking id for
-    * @returns string - unique key for the item
-    */
+     *
+     * @param item - item to produce a tracking id for
+     * @returns string - unique key for the item
+     */
     trackByLabel(item: { label: string }): string {
         return item.label;
     }
 
     /**
-     * Log the current user out and navigate to the root route.
+     * Logs the current user out and navigates to the root route.
      *
      * @returns Promise<void>
      */
