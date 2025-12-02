@@ -5,8 +5,9 @@
             <span class="logo-text">Zplit</span>
         </a>
         <div class="toolbar-menu">
-            <button class="btn btn-square btn-ghost">
-                <i-lucide [img]="Bell" class="lucide-icon"></i-lucide>
+            <button class="btn btn-neutral" (click)="openNewZplitModal()">
+                <i-lucide [img]="Plus" class="lucide-icon"></i-lucide>
+                Zplit
             </button>
             <button class="btn btn-square btn-ghost lg-hidden" (click)="toggleSidebar()">
                 <i-lucide [img]="Menu" class="lucide-icon"></i-lucide>

@@ -3,3 +3,21 @@
     flex-direction: column;
     width: 100%;
 }
+
+.dashboard-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+
+    .title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+    }
+
+    .sub-title {
+        font-size: 1rem;
+        color: var(--text-secondary);
+    }
+}

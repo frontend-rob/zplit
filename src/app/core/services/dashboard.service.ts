@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Observable, from, of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { AuthService, UserData } from '../../core/services/auth.service';
 
@@ -7,27 +7,51 @@ import { AuthService, UserData } from '../../core/services/auth.service';
     providedIn: 'root'
 })
 export class DashboardService {
-
+    
     greeting$: Observable<string>;
     username$: Observable<string>;
 
     /**
-     * Constructs the DashboardService.
-     * @param authService - the AuthService used to read the current auth user and optional Firestore data
+     * Constructs the DashboardService and wires up the observable pipelines.
+     * Note: Observables are lazy — no async work runs until a subscription occurs.
+     *
+     * @param authService - AuthService used to read the current auth user and Firestore profile
      */
     constructor(private authService: AuthService) {
-        
-        this.greeting$ = of(this.getGreetingTime());
+        this.greeting$ = this.buildGreeting$();
+        this.username$ = this.buildUsername$();
+    }
 
-        // username$ reagiert auf den Firebase-User und liest optional Firestore-Daten (Promise -> from)
-        this.username$ = this.authService.user$.pipe(
+    /**
+     * Build greeting observable (single synchronous emission).
+     *
+     * @returns Observable<string> that emits the current greeting and completes.
+     */
+    private buildGreeting$(): Observable<string> {
+        return new Observable<string>(subscriber => {
+            subscriber.next(this.getGreetingTime());
+            subscriber.complete();
+        });
+    }
+
+    /**
+     * Build username observable by mapping the auth user to a displayable name.
+     * This method converts the Promise returned by getUserDataFromFirestore into an observable
+     * and applies a compact mapping + fallback strategy.
+     *
+     * @returns Observable<string> emitting the user's first name or an empty string.
+     */
+    private buildUsername$(): Observable<string> {
+        return this.authService.user$.pipe(
             switchMap((u: any) => {
                 if (!u) return of('');
+
                 return from(this.authService.getUserDataFromFirestore(u.uid)).pipe(
-                    map((fs: UserData | null) => {
-                        if (fs?.userName) return this.extractFirstName(fs.userName);
-                        return this.extractFirstName(u.displayName ?? u.email ?? '');
-                    }),
+                    map((fs: UserData | null) =>
+                        fs?.userName
+                            ? this.extractFirstName(fs.userName)
+                            : this.extractFirstName(u.displayName ?? u.email ?? '')
+                    ),
                     catchError(() => of(this.extractFirstName(u.displayName ?? u.email ?? '')))
                 );
             })
@@ -36,6 +60,7 @@ export class DashboardService {
 
     /**
      * Returns a greeting string depending on the current hour.
+     *
      * @returns a greeting like 'Good morning', 'Good day' or 'Good evening'
      */
     private getGreetingTime(): string {

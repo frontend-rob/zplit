@@ -1,0 +1,15 @@
+@if (isOpen$ | async) {
+<div class="modal-wrapper" (click)="modalService.backdropClick($event)">
+    <div class="modal-content">
+        <header>
+            <h2 class="title">New Zplit</h2>
+            <button class="btn btn-circle btn-neutral" (click)="closeNewZplitModal()">
+                <i-lucide [img]="X" class="lucide-icon"></i-lucide>
+            </button>
+        </header>
+        <section>
+            <p>modal-new-zplit works!</p>
+        </section>
+    </div>
+</div>
+}
